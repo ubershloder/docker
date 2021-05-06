@@ -1,0 +1,21 @@
+version: '3'
+services:
+    nginx:
+        image: nginx
+        networks:
+            - front
+    database:
+        image: postgres:9.6
+        volumes:
+            - dbd:/var/lib/psql
+        networks:
+            - back
+        environment:
+            - POSTGRES_HOST_AUTH_METHOD=trust
+        deploy:
+            mode: global
+networks:
+    frontend:
+    backend:
+volumes:
+    db-d:
